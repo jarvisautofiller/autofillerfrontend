@@ -1,0 +1,71 @@
+{
+  "name": "job-portal-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@zxing/library": "^0.21.3",
+    "ag-grid-react": "^28.0.0",
+    "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "expo-barcode-scanner": "^13.0.1",
+    "fabric": "^6.5.4",
+    "html5-qrcode": "^2.3.8",
+    "quagga": "^0.12.1",
+    "react": "^18.3.1",
+    "react-barcode-reader": "^0.0.2",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-native": "^0.76.5",
+    "react-qr-barcode-scanner": "^2.0.0",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.9.0",
+    "react-to-print": "^3.0.4",
+    "react-toastify": "^10.0.6",
+    "react-zxing": "^2.0.2",
+    "sharp": "^0.33.5",
+    "styled-components": "^6.1.13",
+    "uuid": "^11.0.3",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "cross-env PORT=50 react-scripts start --host 0.0.0.0",
+    "build": "react-scripts build",
+    "start:local": "env-cmd -f ./src/env/.env.local react-scripts start",
+    "build:local": "env-cmd -f ./src/env/.env.local react-scripts build",
+    "start:dev": "env-cmd -f ./src/env/.env.development react-scripts start",
+    "build:dev": "env-cmd -f ./src/env/.env.development react-scripts build",
+    "start:test": "env-cmd -f ./src/env/.env.test react-scripts start",
+    "build:test": "env-cmd -f ./src/env/.env.test react-scripts build",
+    "start:prod": "env-cmd -f ./src/env/.env.production react-scripts start",
+    "build:prod": "env-cmd -f ./src/env/.env.production react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0"
+  }
+}
