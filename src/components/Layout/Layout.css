@@ -1,0 +1,48 @@
+.layout-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.layout-pane {
+  flex: 1;
+  padding: 4rem;
+}
+
+.left-pane {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-pane {
+  background-color: #f8f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pane-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.pane-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.layout-content {
+  flex: 1;
+}
+
+.skip-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2rem;
+  padding: 0;
+}
