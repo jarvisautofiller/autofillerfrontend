@@ -6,6 +6,14 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .left-pane {
+    display: none;
+  }
+}
+
+
 .left-pane h2 {
   font-size: 20px;
   font-weight: 600;

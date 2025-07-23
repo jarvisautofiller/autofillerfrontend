@@ -24,25 +24,25 @@ const AutofillForm: React.FC<Props> = ({ userData, manual }) => {
   return (
     <div className="autofill-form">
 
-      <text style={{align: "left"}}>First Name</text>
+      <text style={{alignSelf: "start"}}>First Name</text>
       <input type="text" name="firstName" value={form.firstName || ''} onChange={handleChange} placeholder="First Name" />
-      <text style={{align: "left"}}>Last Name</text>
+      <text style={{alignSelf: "start"}}>Last Name</text>
       <input type="text" name="lastName" value={form.lastName || ''} onChange={handleChange} placeholder="Last Name" />
-      <text style={{align: "left"}}>Phone Number</text>
+      <text style={{alignSelf: "start"}}>Phone Number</text>
       <input type="text" name="phoneNumber" value={form.phoneNumber || ''} onChange={handleChange} placeholder="Phone Number" />
-      <text style={{align: "left"}}>Age</text>
+      <text style={{alignSelf: "start"}}>Age</text>
       <input type="text" name="age" value={form.age || ''} onChange={handleChange} placeholder="Age" />
-      <text style={{align: "left"}}>Email ID</text>
+      <text style={{alignSelf: "start"}}>Email ID</text>
       <input type="text" name="email" value={form.email || ''} onChange={handleChange} placeholder="Email ID" />
-      <text style={{align: "left"}}>Address</text>
+      <text style={{alignSelf: "start"}}>Address</text>
       <input type="text" name="address" value={form.address || ''} onChange={handleChange} placeholder="Address" />
-      <text style={{align: "left"}}>Profession</text>
+      <text style={{alignSelf: "start"}}>Profession</text>
       <input type="text" name="profession" value={form.profession || ''} onChange={handleChange} placeholder="Profession" />
-      <text style={{align: "left"}}>Account Number</text>
+      <text style={{alignSelf: "start"}}>Account Number</text>
       <input type="text" name="accountNumber" value={form.accountNumber || ''} onChange={handleChange} placeholder="Account Number" />
-      <text style={{align: "left"}}>IFSC Code</text>
+      <text style={{alignSelf: "start"}}>IFSC Code</text>
       <input type="text" name="ifscCode" value={form.ifscCode || ''} onChange={handleChange} placeholder="IFSC  Code" />
-      <text style={{align: "left"}}>Income</text>
+      <text style={{alignSelf: "start"}}>Income</text>
       <input type="text" name="income" value={form.income || ''} onChange={handleChange} placeholder="Income" />
 
 

@@ -52,3 +52,30 @@
   margin-top: 2rem;
   padding: 0;
 }
+
+
+@media (max-width: 768px) {
+  .layout-wrapper {
+    flex-direction: column;
+  }
+
+  .layout-pane {
+    padding: 2rem 1rem;
+  }
+
+  .pane-title,
+  .pane-title-error {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .pane-subtitle {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .layout-content {
+    width: 100%;
+  }
+}
+
