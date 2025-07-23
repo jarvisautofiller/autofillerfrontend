@@ -34,6 +34,11 @@ const VerificationPage: React.FC = () => {
     }, 3000);
   };
 
+  const handleExtractId = (id) => {
+     setDocId(id);
+     setStep('confirm');
+  }
+
   return (
       <>
       <div className="verification-page">
@@ -43,10 +48,10 @@ const VerificationPage: React.FC = () => {
     <Layout step={step}>
 
       {step === 'upload' && (
-        <DocumentUpload onDocumentIdExtracted={(id) => {handleIDConfirm(id)} }onManualEntry={(id) => { handleIDConfirm(id)}} />
+        <DocumentUpload onDocumentIdExtracted={(id) => handleExtractId(id)}  onManualEntry={(id) => handleIDConfirm(id)} />
       )}
       {step === 'confirm' && (
-        <IDConfirmationSection docId={docId} onConfirm={handleIDConfirm(id)} onReject={() => setStep('upload')} />
+        <IDConfirmationSection docId={docId} onConfirm={() => handleIDConfirm(docId)} onReject={() => setStep('upload')} />
       )}
       {step === 'verify' && <VerificationLoader />}
 
