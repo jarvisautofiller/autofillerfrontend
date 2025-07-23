@@ -16,7 +16,7 @@ RUN npm install
 COPY . .
 
 # Build the application
-RUN npm run dev
+RUN npm run build
 
 # -----------------------
 # Production image
@@ -27,7 +27,7 @@ FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose port 80 (default for nginx)
-EXPOSE 80
+EXPOSE 3000
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
