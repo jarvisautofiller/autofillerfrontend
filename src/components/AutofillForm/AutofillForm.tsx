@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AutofillForm.css';
 
 interface Props {
@@ -13,12 +13,39 @@ const AutofillForm: React.FC<Props> = ({ userData, manual }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+    useEffect(() => {
+      if (userData) {
+        setForm(userData);
+      }
+    }, [userData,
+        manual]);
+
+
   return (
     <div className="autofill-form">
-      {manual && <p className="manual-note">Verification failed. Please fill the details manually.</p>}
-      <input type="text" name="name" value={form.name || ''} onChange={handleChange} placeholder="Full Name" />
-      <input type="text" name="dob" value={form.dob || ''} onChange={handleChange} placeholder="Date of Birth" />
+
+      <text style={{align: "left"}}>First Name</text>
+      <input type="text" name="firstName" value={form.firstName || ''} onChange={handleChange} placeholder="First Name" />
+      <text style={{align: "left"}}>Last Name</text>
+      <input type="text" name="lastName" value={form.lastName || ''} onChange={handleChange} placeholder="Last Name" />
+      <text style={{align: "left"}}>Phone Number</text>
+      <input type="text" name="phoneNumber" value={form.phoneNumber || ''} onChange={handleChange} placeholder="Phone Number" />
+      <text style={{align: "left"}}>Age</text>
+      <input type="text" name="age" value={form.age || ''} onChange={handleChange} placeholder="Age" />
+      <text style={{align: "left"}}>Email ID</text>
+      <input type="text" name="email" value={form.email || ''} onChange={handleChange} placeholder="Email ID" />
+      <text style={{align: "left"}}>Address</text>
       <input type="text" name="address" value={form.address || ''} onChange={handleChange} placeholder="Address" />
+      <text style={{align: "left"}}>Profession</text>
+      <input type="text" name="profession" value={form.profession || ''} onChange={handleChange} placeholder="Profession" />
+      <text style={{align: "left"}}>Account Number</text>
+      <input type="text" name="accountNumber" value={form.accountNumber || ''} onChange={handleChange} placeholder="Account Number" />
+      <text style={{align: "left"}}>IFSC Code</text>
+      <input type="text" name="ifscCode" value={form.ifscCode || ''} onChange={handleChange} placeholder="IFSC  Code" />
+      <text style={{align: "left"}}>Income</text>
+      <input type="text" name="income" value={form.income || ''} onChange={handleChange} placeholder="Income" />
+
+
       <button className="submit-btn">Submit</button>
     </div>
   );

@@ -57,3 +57,9 @@
   background-color: #11b67a;
   color: white;
 }
+
+.step-item.failed .step-circle {
+  background-color: #f44336; /* red */
+  color: white;
+  border: none;
+}

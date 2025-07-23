@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './DocumentUpload.css';
+import LoaderOverlay from '../LoaderOverlay/LoaderOverlay';
 
 interface Props {
   onDocumentIdExtracted: (docId: string) => void;
@@ -11,6 +12,7 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
   const [file, setFile] = useState<File | null>(null);
   const [docNumber, setDocNumber] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] || null;
@@ -19,8 +21,10 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
   };
 
   const handleUpload = async () => {
+      setLoading(true);
     if (!file) {
       setError('Please select a document.');
+      setLoading(false);
       return;
     }
 
@@ -29,24 +33,28 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
 
     try {
       const res = await axios.post(
-        'https://jarvis-engine-614442955083.europe-west1.run.app/document',
+        'http://localhost:8084/document',
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      if (res.data?.docId) {
-        onDocumentIdExtracted(res.data.docId);
+      if (res.data) {
+        onDocumentIdExtracted(res.data);
       } else {
-        setError('Unable to extract ID. Please enter your document ID manually.');
+        setError('There was an error while processing your image. Please enter your document ID manually or re-upload your document');
       }
     } catch (err) {
-        onDocumentIdExtracted('123456790')
-//       setError('Please enter your document ID manually.');
+       setError('There was an error while processing your image. Please enter your document ID manually or re-upload your document');
     }
+setLoading(false);
   };
 
   return (
-    <div className="upload-card">
+      <>
+
+
+    <div className="upload-card" style={{ position: 'relative' }}>
+    {loading && <LoaderOverlay/>}
       <div className="upload-header">
         <div className="upload-icon">
           <img src="id-verify-illustration.png" alt="ID Verification" className="id-verify-image"/>
@@ -56,7 +64,7 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
           <p>Upload your document or enter ID manually to start verification.</p>
         </div>
       </div>
-
+{error && <p className="error-text">{error}</p>}
     <div className="upload-box" onDragOver={(e) => e.preventDefault()}
                                   onDrop={(e) => {
                                     e.preventDefault();
@@ -77,7 +85,7 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
       </div>
     </div>
 
- <button className="upload-btn" onClick={handleUpload}>Upload</button>
+ <button className="upload-btn" onClick={handleUpload}>Submit</button>
 
       <div className="divider">OR</div>
 
@@ -94,8 +102,8 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
         </button>
       </div>
 
-      {error && <p className="error-text">{error}</p>}
-    </div>
+
+    </div></>
   );
 };
 
