@@ -1,33 +1,26 @@
-# Use official Node.js image as the base
-FROM node:20-alpine AS builder
+# Use official Node.js image
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package and config files
+# Copy dependency files
 COPY package*.json ./
-COPY tsconfig.* ./
-COPY vite.config.* ./
 
 # Install dependencies
 RUN npm install
 
-# Copy rest of the application code
+# Copy the rest of the code
 COPY . .
 
-# Build the application
+# Build the frontend using Vite
 RUN npm run build
 
-# -----------------------
-# Production image
-# -----------------------
-FROM nginx:alpine
+# Cloud Run will inject this port
+ENV PORT=8080
 
-# Copy built assets from builder
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Expose that port for Cloud Run
+EXPOSE 8080
 
-# Expose port 80 (default for nginx)
-EXPOSE 3000
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start server with Vite preview
+CMD ["npm", "run", "preview"]
