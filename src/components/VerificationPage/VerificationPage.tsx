@@ -12,25 +12,36 @@ const VerificationPage: React.FC = () => {
   const [confirmed, setConfirmed] = useState(false);
   const [verificationComplete, setVerificationComplete] = useState(false);
   const [details, setDetails] = useState<any>(null);
-  const [step, setStep] = useState<'upload' | 'confirm' | 'verify' | 'form'>('upload');
+  const [error, setError] = useState('');
+  const [step, setStep] = useState<'upload' | 'confirm' | 'verification' | 'form'>('upload');
 
 
   const handleIDConfirm = (id) => {
       setDocId(id);
+
     setConfirmed(true);
-    setStep('verify');
+    setStep('verification');
     setTimeout(async () => {
-      const res = await fetch(`https://jarvis-engine-614442955083.europe-west1.run.app/id?id=${id}`);
-      const data = await res.body;
-      if (data?.name) {
-        setDetails(data);
-        setStep('form');
-        setVerificationComplete(true);
-      } else {
-        setStep('form');
+        try {
+      const res = await fetch(`http://localhost:8084/id?id=${id}`);
+     if (res.ok) {
+         const data = await res.json();
+          if (data?.firstName) {
+                 setDetails(data);
+                 setStep('form');
+                 setVerificationComplete(true);
+               }
+     } else {
+         setStep('failedForm');
+                 setVerificationComplete(false);
+        }
+    } catch (e) {
+        setStep('failedForm');
         setVerificationComplete(false);
-      }
-    }, 3000);
+        };
+
+
+    }, 10);
   };
 
   const handleExtractId = (id) => {
@@ -52,14 +63,14 @@ const VerificationPage: React.FC = () => {
       {step === 'confirm' && (
         <IDConfirmationSection docId={docId} onConfirm={() => handleIDConfirm(docId)} onReject={() => setStep('upload')} />
       )}
-      {step === 'verify' && <VerificationLoader />}
+      {step === 'verification' && <VerificationLoader />}
 
     </Layout>
     </div>
 
     </div>
     <div className="verification-page">
-    <AutofillForm data={details} verified={verificationComplete} />
+    <AutofillForm userData={details} manual={verificationComplete} />
     </div>
     </>
 

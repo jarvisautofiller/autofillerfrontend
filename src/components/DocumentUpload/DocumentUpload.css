@@ -132,3 +132,9 @@ input[type='file'] {
 .upload-btn {
   margin: 1rem;
 }
+
+.pane-title-error {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: red !important;
+}
