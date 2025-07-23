@@ -1,29 +1,33 @@
-# Use official Node.js v20 image on Alpine
-FROM node:20-alpine3.18
-
-# Install build tools for native dependencies
-RUN apk add --no-cache python3 make g++
+# Use official Node.js image as the base
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy dependency manifests
+# Copy package and config files
 COPY package*.json ./
+COPY tsconfig.* ./
+COPY vite.config.* ./
 
-# Install app dependencies + Babel plugin fix
-RUN npm install && npm install --save-dev @babel/plugin-proposal-private-property-in-object
+# Install dependencies
+RUN npm install
 
-# Copy the rest of your source files
+# Copy rest of the application code
 COPY . .
 
-# Disable sourcemap generation to reduce memory usage
-ENV GENERATE_SOURCEMAP=false
+# Build the application
+RUN npm run dev
 
-# Increase Node's memory limit to avoid heap crash
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+# -----------------------
+# Production image
+# -----------------------
+FROM nginx:alpine
 
-# Expose app port — update if different
-EXPOSE 3000
+# Copy built assets from builder
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Run your production start command
-CMD ["npm", "run", "start:prod"]
+# Expose port 80 (default for nginx)
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

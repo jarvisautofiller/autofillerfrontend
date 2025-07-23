@@ -12,7 +12,6 @@ const VerificationPage: React.FC = () => {
   const [confirmed, setConfirmed] = useState(false);
   const [verificationComplete, setVerificationComplete] = useState(false);
   const [details, setDetails] = useState<any>(null);
-  const [error, setError] = useState('');
   const [step, setStep] = useState<'upload' | 'confirm' | 'verify' | 'form'>('upload');
 
 
@@ -21,8 +20,8 @@ const VerificationPage: React.FC = () => {
     setConfirmed(true);
     setStep('verify');
     setTimeout(async () => {
-      const res = await fetch(`https://jarvis-engine-614442955083.europe-west1.run.app/id?id=${docId}`);
-      const data = await res.json();
+      const res = await fetch(`https://jarvis-engine-614442955083.europe-west1.run.app/id?id=${id}`);
+      const data = await res.body;
       if (data?.name) {
         setDetails(data);
         setStep('form');
