@@ -33,7 +33,7 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
 
     try {
       const res = await axios.post(
-        'https://jarvis-engine-614442955083.europe-west1.run.app/document/document',
+        'https://jarvis-engine-614442955083.europe-west1.run.app/document',
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
