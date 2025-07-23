@@ -34,8 +34,8 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      if (res.data?.docId) {
-        onDocumentIdExtracted(res.data.docId);
+      if (res.data) {
+        onDocumentIdExtracted(res.data);
       } else {
         setError('Unable to extract ID. Please enter your document ID manually.');
       }
