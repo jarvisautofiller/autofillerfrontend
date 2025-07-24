@@ -33,7 +33,7 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
 
     try {
       const res = await axios.post(
-        'https://jarvis-engine-614442955083.europe-west1.run.app/document',
+        'https://jarvis-engine-595603232563.europe-west1.run.app/document',
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -94,7 +94,7 @@ setLoading(false);
         <input
           type="text"
           value={docNumber}
-          placeholder="XXXX-XXXX-XXXX"
+          placeholder="XXXXXXXXXXXX"
           onChange={(e) => setDocNumber(e.target.value)}
         />
         <button className="upload-btn" onClick={() => onManualEntry(docNumber)}>
