@@ -23,7 +23,7 @@ const VerificationPage: React.FC = () => {
     setStep('verification');
     setTimeout(async () => {
         try {
-      const res = await fetch(`https://jarvis-engine-614442955083.europe-west1.run.app/id?id=${id}`);
+      const res = await fetch(`https://jarvis-engine-595603232563.europe-west1.run.app/id?id=${id}`);
      if (res.ok) {
          const data = await res.json();
           if (data?.firstName) {
