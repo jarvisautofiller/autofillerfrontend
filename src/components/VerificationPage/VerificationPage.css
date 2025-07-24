@@ -73,3 +73,11 @@
   background: #eee;
   margin: 10px 0;
 }
+
+@media (max-width: 768px) {
+    .verification-page {
+        padding: 0px;
+    }
+
+
+}

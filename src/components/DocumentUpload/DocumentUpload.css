@@ -138,3 +138,96 @@ input[type='file'] {
   margin-bottom: 1rem;
   color: red !important;
 }
+
+/* Existing styles here... */
+
+@media (max-width: 768px) {
+  .upload-card {
+    padding: 16px;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .upload-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .upload-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .upload-header p {
+    font-size: 0.9rem;
+  }
+
+  .upload-icon img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .upload-header-div {
+    padding-top: 16px;
+  }
+
+  .upload-box {
+    padding: 16px;
+  }
+
+  .select-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+
+
+  .manual-entry input {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .divider {
+    margin: 16px 0;
+  }
+
+  .file-name {
+    font-size: 0.85rem;
+  }
+  .upload-btn {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 12px;
+    font-size: 1rem;
+  }
+  .manual-entry {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .manual-entry input {
+    width: 90%;
+    max-width: 300px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .manual-entry button {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #11b67a;
+    color: white;
+    cursor: pointer;
+  }
+
+}
